@@ -5,11 +5,11 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "require": {
-    "php": "^8.1",
-    "guzzlehttp/guzzle": "^7.2",
-    "laravel/framework": "^8.0",
-    "laravel/tinker": "^2.5"
-},
+        "php": "^8.1",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^8.0",
+        "laravel/tinker": "^2.5"
+    },
     "require-dev": {
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
@@ -53,7 +53,11 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true,
+            "laravel/octane": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
