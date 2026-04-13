@@ -1,5 +1,9 @@
 FROM php:8.2-apache
 
+# Disable default MPM modules before enabling prefork
+RUN a2dismod mpm_event || true
+RUN a2enmod mpm_prefork
+
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -36,7 +40,7 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Install PHP dependencies (PERBAIKAN: --optimize-autoloader)
+# Install PHP dependencies
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Set permissions
