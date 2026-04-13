@@ -1,8 +1,4 @@
-FROM php:8.2-apache
-
-# Disable default MPM modules before enabling prefork
-RUN a2dismod mpm_event || true
-RUN a2enmod mpm_prefork
+FROM php:8.2-cli
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -15,7 +11,8 @@ RUN apt-get update && apt-get install -y \
     curl \
     libonig-dev \
     libxml2-dev \
-    libzip-dev
+    libzip-dev \
+    libpq-dev
 
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
@@ -27,9 +24,6 @@ RUN docker-php-ext-install -j$(nproc) \
     bcmath \
     gd \
     zip
-
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -44,18 +38,22 @@ COPY . .
 RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache || true
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Generate application key
-RUN cp .env.example .env || true
-RUN php artisan key:generate || true
+# Create .env file if not exists
+RUN cp .env.example .env 2>/dev/null || echo "APP_KEY=" > .env
 
-# Configure Apache to serve from public directory
-RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+# Generate application key
+RUN php artisan key:generate --force || true
+
+# Clear and cache config
+RUN php artisan config:clear || true
+RUN php artisan cache:clear || true
+RUN php artisan view:clear || true
 
 # Expose port
-EXPOSE 80
+EXPOSE 8000
 
-# Start Apache
-CMD ["apache2-foreground"]
+# Start PHP built-in server
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
