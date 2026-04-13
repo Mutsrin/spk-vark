@@ -36,14 +36,14 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Install PHP dependencies
-RUN composer install --no-interaction --optimize-autoload --no-dev
+# Install PHP dependencies (PERBAIKAN: --optimize-autoloader)
+RUN composer install --no-interaction --optimize-autoloader --no-dev
 
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Generate application key (butuh .env dulu)
+# Generate application key
 RUN cp .env.example .env || true
 RUN php artisan key:generate || true
 
