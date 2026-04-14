@@ -8,6 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        dd(config('database.connections.mysql'));
         $totalResponden = KuesionerResponse::count();
         
         $gayaBelajarCount = [
