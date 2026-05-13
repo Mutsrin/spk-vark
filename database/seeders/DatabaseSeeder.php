@@ -10,13 +10,13 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        User::updateOrCreate(
-            ['email' => 'mutsrinalim16@gmail.com'],
-            [
-                'name' => 'Mutsrin Alim',
-                'password' => Hash::make('cumlaude'),
-                'is_admin' => true
-            ]
-        );
+        User::where('email', 'mutsrinalim16@gmail.com')->delete();
+
+        User::create([
+            'name' => 'Mutsrin Alim',
+            'email' => 'mutsrinalim16@gmail.com',
+            'password' => Hash::make('cumlaude'),
+            'is_admin' => 1
+        ]);
     }
 }
