@@ -155,10 +155,6 @@
                     <i class="fas fa-arrow-right me-2"></i> Login
                 </button>
             </form>
-            <div class="demo-info">
-                <i class="fas fa-info-circle text-primary me-1"></i>
-                <small>Demo: admin@example.com / password</small>
-            </div>
         </div>
     </div>
 </body>
