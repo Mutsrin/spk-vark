@@ -84,10 +84,10 @@ public function logout(Request $request)
 {
     // Ambil bobot dari session atau default
     $bobot = session('bobot_kriteria', [
-        'preferensi_sensorik' => 0.35,
-        'metode_pemrosesan' => 0.30,
-        'media_alat_belajar' => 0.20,
-        'lingkungan_kondisi' => 0.15,
+        'preferensi_sensorik' => 0.25,
+        'metode_pemrosesan' => 0.25,
+        'media_alat_belajar' => 0.25,
+        'lingkungan_kondisi' => 0.25,
     ]);
     
     return view('admin.bobot', compact('bobot'));
