@@ -63,7 +63,7 @@
                                                 <div class="mt-3">
                                                     <input type="range" name="preferensi_sensorik" id="preferensi_sensorik" 
                                                            class="form-range" step="0.01" min="0" max="1" 
-                                                           value="{{ $bobot['preferensi_sensorik'] ?? 0.35 }}"
+                                                           value="{{ $bobot['preferensi_sensorik'] ?? 0.25 }}"
                                                            oninput="updateValue('preferensi_sensorik', this.value)">
                                                     <div class="d-flex justify-content-between mt-1">
                                                         <small class="text-muted">0%</small>
@@ -78,7 +78,7 @@
                                                         <span class="input-group-text bg-light">Nilai Bobot</span>
                                                         <input type="number" id="preferensi_sensorik_input" 
                                                                class="form-control" step="0.01" min="0" max="1"
-                                                               value="{{ $bobot['preferensi_sensorik'] ?? 0.35 }}"
+                                                               value="{{ $bobot['preferensi_sensorik'] ?? 0.25 }}"
                                                                oninput="updateSlider('preferensi_sensorik', this.value)">
                                                         <span class="input-group-text bg-light">(0 - 1)</span>
                                                     </div>
@@ -110,7 +110,7 @@
                                                 <div class="mt-3">
                                                     <input type="range" name="metode_pemrosesan" id="metode_pemrosesan" 
                                                            class="form-range" step="0.01" min="0" max="1" 
-                                                           value="{{ $bobot['metode_pemrosesan'] ?? 0.30 }}"
+                                                           value="{{ $bobot['metode_pemrosesan'] ?? 0.25 }}"
                                                            oninput="updateValue('metode_pemrosesan', this.value)">
                                                     <div class="d-flex justify-content-between mt-1">
                                                         <small class="text-muted">0%</small>
@@ -125,7 +125,7 @@
                                                         <span class="input-group-text bg-light">Nilai Bobot</span>
                                                         <input type="number" id="metode_pemrosesan_input" 
                                                                class="form-control" step="0.01" min="0" max="1"
-                                                               value="{{ $bobot['metode_pemrosesan'] ?? 0.30 }}"
+                                                               value="{{ $bobot['metode_pemrosesan'] ?? 0.25 }}"
                                                                oninput="updateSlider('metode_pemrosesan', this.value)">
                                                         <span class="input-group-text bg-light">(0 - 1)</span>
                                                     </div>
@@ -157,7 +157,7 @@
                                                 <div class="mt-3">
                                                     <input type="range" name="media_alat_belajar" id="media_alat_belajar" 
                                                            class="form-range" step="0.01" min="0" max="1" 
-                                                           value="{{ $bobot['media_alat_belajar'] ?? 0.20 }}"
+                                                           value="{{ $bobot['media_alat_belajar'] ?? 0.25 }}"
                                                            oninput="updateValue('media_alat_belajar', this.value)">
                                                     <div class="d-flex justify-content-between mt-1">
                                                         <small class="text-muted">0%</small>
@@ -172,7 +172,7 @@
                                                         <span class="input-group-text bg-light">Nilai Bobot</span>
                                                         <input type="number" id="media_alat_belajar_input" 
                                                                class="form-control" step="0.01" min="0" max="1"
-                                                               value="{{ $bobot['media_alat_belajar'] ?? 0.20 }}"
+                                                               value="{{ $bobot['media_alat_belajar'] ?? 0.25 }}"
                                                                oninput="updateSlider('media_alat_belajar', this.value)">
                                                         <span class="input-group-text bg-light">(0 - 1)</span>
                                                     </div>
@@ -204,7 +204,7 @@
                                                 <div class="mt-3">
                                                     <input type="range" name="lingkungan_kondisi" id="lingkungan_kondisi" 
                                                            class="form-range" step="0.01" min="0" max="1" 
-                                                           value="{{ $bobot['lingkungan_kondisi'] ?? 0.15 }}"
+                                                           value="{{ $bobot['lingkungan_kondisi'] ?? 0.25}}"
                                                            oninput="updateValue('lingkungan_kondisi', this.value)">
                                                     <div class="d-flex justify-content-between mt-1">
                                                         <small class="text-muted">0%</small>
@@ -219,7 +219,7 @@
                                                         <span class="input-group-text bg-light">Nilai Bobot</span>
                                                         <input type="number" id="lingkungan_kondisi_input" 
                                                                class="form-control" step="0.01" min="0" max="1"
-                                                               value="{{ $bobot['lingkungan_kondisi'] ?? 0.15 }}"
+                                                               value="{{ $bobot['lingkungan_kondisi'] ?? 0.25 }}"
                                                                oninput="updateSlider('lingkungan_kondisi', this.value)">
                                                         <span class="input-group-text bg-light">(0 - 1)</span>
                                                     </div>
@@ -276,10 +276,10 @@
 <script>
     // Bobot default
     const defaultBobot = {
-        preferensi_sensorik: 0.35,
-        metode_pemrosesan: 0.30,
-        media_alat_belajar: 0.20,
-        lingkungan_kondisi: 0.15
+        preferensi_sensorik: 0.25,
+        metode_pemrosesan: 0.25,
+        media_alat_belajar: 0.25,
+        lingkungan_kondisi: 0.25
     };
     
     // Update value dari slider
@@ -341,7 +341,7 @@
         Swal.fire({
             icon: 'info',
             title: 'Reset Berhasil',
-            text: 'Bobot dikembalikan ke nilai default (0.35, 0.30, 0.20, 0.15)',
+            text: 'Bobot dikembalikan ke nilai default (0.25, 0.25, 0.25, 0.25)',
             confirmButtonColor: '#1a2a6c',
             timer: 2000
         });
